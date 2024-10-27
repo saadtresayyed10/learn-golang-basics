@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func main() {
 	conferenceName := "Go Conference"
@@ -33,12 +35,28 @@ func main() {
 		fmt.Println("Enter the no. of tickets to buy: ")
 		fmt.Scan(&userTickets)
 
+		if userTickets > remainingTickets {
+			fmt.Printf("Only %v are remaining, can't book %v tickets\n", remainingTickets, userTickets)
+			continue
+		}
+
 		remainingTickets = remainingTickets - userTickets
 		bookings = append(bookings, firstName+" "+lastName)
 
 		fmt.Println("Whole slice: ", bookings)
 		fmt.Println("1st element in slice: ", bookings[0])
 		fmt.Println("Size of the slice: ", len(bookings))
+
+		// firstNames := []string{}
+		// for _, booking := range bookings {
+		// 	var names = strings.Fields(booking)
+		// 	firstNames = append(firstNames, names[0])
+		// }
+
+		if remainingTickets == 0 {
+			fmt.Println("We are sold out, come back next year!")
+			break
+		}
 
 		fmt.Printf("User %v %v has bought %v tickets using %v email\n", firstName, lastName, userTickets, email)
 		fmt.Printf("Total remaining tickets %v\n", remainingTickets)
