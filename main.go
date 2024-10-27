@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"strings"
 )
 
 func main() {
@@ -35,6 +36,10 @@ func main() {
 		fmt.Println("Enter the no. of tickets to buy: ")
 		fmt.Scan(&userTickets)
 
+		isValidName := len(firstName) >= 2 && len(lastName) >= 2
+		isValidEmail := strings.Contains(email, "@")
+		isValidTickets := userTickets <= remainingTickets
+
 		if userTickets <= remainingTickets {
 			remainingTickets = remainingTickets - userTickets
 			bookings = append(bookings, firstName+" "+lastName)
@@ -57,7 +62,15 @@ func main() {
 			fmt.Printf("User %v %v has bought %v tickets using %v email\n", firstName, lastName, userTickets, email)
 			fmt.Printf("Total remaining tickets %v\n", remainingTickets)
 		} else {
-			fmt.Printf("Only %v are remaining, can't book %v tickets\n", remainingTickets, userTickets)
+			if !isValidName {
+				fmt.Println("First or Last name is too short")
+			}
+			if !isValidEmail {
+				fmt.Println("Email doesn't contain @ sign")
+			}
+			if !isValidTickets {
+				fmt.Println("Invalid number of tickets entered")
+			}
 		}
 
 	}
