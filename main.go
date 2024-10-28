@@ -14,7 +14,7 @@ func main() {
 
 	greetUsers()
 
-	bookings := []string{}
+	var bookings = make([]map[string]string, 0)
 
 	for remainingTickets > 0 && len(bookings) <= 50 {
 		firstName, lastName, email, userTickets := getUserInput()
@@ -22,7 +22,7 @@ func main() {
 		isValidName, isValidEmail, isValidTickets := helper.ValidateConditions(firstName, lastName, email, userTickets, remainingTickets)
 
 		if userTickets <= remainingTickets {
-			helper.BookTickets(remainingTickets, userTickets, bookings, firstName, lastName)
+			helper.BookTickets(remainingTickets, userTickets, bookings, firstName, lastName, email)
 
 			// firstNames := []string{}
 			// for _, booking := range bookings {

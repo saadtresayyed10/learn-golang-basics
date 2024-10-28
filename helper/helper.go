@@ -2,6 +2,7 @@ package helper
 
 import (
 	"fmt"
+	"strconv"
 	"strings"
 )
 
@@ -14,9 +15,16 @@ func ValidateConditions(firstName string, lastName string, email string, userTic
 
 }
 
-func BookTickets(remainingTickets uint, userTickets uint, bookings []string, firstName string, lastName string) {
+func BookTickets(remainingTickets uint, userTickets uint, bookings []map[string]string, firstName string, lastName string, email string) {
 	remainingTickets = remainingTickets - userTickets
-	bookings = append(bookings, firstName+" "+lastName)
+
+	var userData = make(map[string]string)
+	userData["firstName"] = firstName
+	userData["lastName"] = lastName
+	userData["email"] = email
+	userData["numberOfTickets"] = strconv.FormatUint(uint64(userTickets), 10)
+
+	bookings = append(bookings, userData)
 
 	fmt.Println("Whole slice: ", bookings)
 	fmt.Println("1st element in slice: ", bookings[0])
