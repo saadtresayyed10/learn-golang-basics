@@ -10,6 +10,13 @@ const conferenceTickets uint = 50
 var conferenceName = "Go Conference"
 var remainingTickets uint = 50
 
+// type UserData struct {
+// 	firstName   string
+// 	lastName    string
+// 	email       string
+// 	userTickets uint
+// }
+
 func main() {
 
 	greetUsers()
