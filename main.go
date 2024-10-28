@@ -5,12 +5,14 @@ import (
 	"strings"
 )
 
-func main() {
-	conferenceName := "Go Conference"
-	const conferenceTickets uint = 50
-	var remainingTickets uint = 50
+const conferenceTickets uint = 50
 
-	greetUsers(conferenceName, conferenceTickets, remainingTickets)
+var conferenceName = "Go Conference"
+var remainingTickets uint = 50
+
+func main() {
+
+	greetUsers()
 
 	bookings := []string{}
 
@@ -20,12 +22,7 @@ func main() {
 		isValidName, isValidEmail, isValidTickets := validateConditions(firstName, lastName, email, userTickets, remainingTickets)
 
 		if userTickets <= remainingTickets {
-			remainingTickets = remainingTickets - userTickets
-			bookings = append(bookings, firstName+" "+lastName)
-
-			fmt.Println("Whole slice: ", bookings)
-			fmt.Println("1st element in slice: ", bookings[0])
-			fmt.Println("Size of the slice: ", len(bookings))
+			bookTickets(remainingTickets, userTickets, bookings, firstName, lastName)
 
 			// firstNames := []string{}
 			// for _, booking := range bookings {
@@ -56,7 +53,7 @@ func main() {
 
 }
 
-func greetUsers(conferenceName string, conferenceTickets uint, remainingTickets uint) {
+func greetUsers() {
 	fmt.Printf("Welcome to %v booking application\n", conferenceName)
 	fmt.Printf("We have total of %v tickets from which %v are remaining\n", conferenceTickets, remainingTickets)
 	fmt.Printf("Get your tickets to attend\n")
@@ -90,4 +87,13 @@ func getUserInput() (string, string, string, uint) {
 	fmt.Scan(&userTickets)
 
 	return firstName, lastName, email, userTickets
+}
+
+func bookTickets(remainingTickets uint, userTickets uint, bookings []string, firstName string, lastName string) {
+	remainingTickets = remainingTickets - userTickets
+	bookings = append(bookings, firstName+" "+lastName)
+
+	fmt.Println("Whole slice: ", bookings)
+	fmt.Println("1st element in slice: ", bookings[0])
+	fmt.Println("Size of the slice: ", len(bookings))
 }
