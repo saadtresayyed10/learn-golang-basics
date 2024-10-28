@@ -32,9 +32,7 @@ func main() {
 		fmt.Println("Enter the no. of tickets to buy: ")
 		fmt.Scan(&userTickets)
 
-		isValidName := len(firstName) >= 2 && len(lastName) >= 2
-		isValidEmail := strings.Contains(email, "@")
-		isValidTickets := userTickets <= remainingTickets
+		isValidName, isValidEmail, isValidTickets := validateConditions(firstName, lastName, email, userTickets, remainingTickets)
 
 		if userTickets <= remainingTickets {
 			remainingTickets = remainingTickets - userTickets
@@ -77,4 +75,13 @@ func greetUsers(conferenceName string, conferenceTickets uint, remainingTickets 
 	fmt.Printf("Welcome to %v booking application\n", conferenceName)
 	fmt.Printf("We have total of %v tickets from which %v are remaining\n", conferenceTickets, remainingTickets)
 	fmt.Printf("Get your tickets to attend\n")
+}
+
+func validateConditions(firstName string, lastName string, email string, userTickets uint, remainingTickets uint) (bool, bool, bool) {
+	isValidName := len(firstName) >= 2 && len(lastName) >= 2
+	isValidEmail := strings.Contains(email, "@")
+	isValidTickets := userTickets <= remainingTickets
+
+	return isValidName, isValidEmail, isValidTickets
+
 }
