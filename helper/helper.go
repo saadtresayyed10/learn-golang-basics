@@ -1,11 +1,11 @@
-package main
+package helper
 
 import (
 	"fmt"
 	"strings"
 )
 
-func validateConditions(firstName string, lastName string, email string, userTickets uint, remainingTickets uint) (bool, bool, bool) {
+func ValidateConditions(firstName string, lastName string, email string, userTickets uint, remainingTickets uint) (bool, bool, bool) {
 	isValidName := len(firstName) >= 2 && len(lastName) >= 2
 	isValidEmail := strings.Contains(email, "@")
 	isValidTickets := userTickets <= remainingTickets
@@ -14,7 +14,7 @@ func validateConditions(firstName string, lastName string, email string, userTic
 
 }
 
-func bookTickets(remainingTickets uint, userTickets uint, bookings []string, firstName string, lastName string) {
+func BookTickets(remainingTickets uint, userTickets uint, bookings []string, firstName string, lastName string) {
 	remainingTickets = remainingTickets - userTickets
 	bookings = append(bookings, firstName+" "+lastName)
 
