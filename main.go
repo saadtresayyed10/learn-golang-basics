@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"strings"
 )
 
 const conferenceTickets uint = 50
@@ -59,15 +58,6 @@ func greetUsers() {
 	fmt.Printf("Get your tickets to attend\n")
 }
 
-func validateConditions(firstName string, lastName string, email string, userTickets uint, remainingTickets uint) (bool, bool, bool) {
-	isValidName := len(firstName) >= 2 && len(lastName) >= 2
-	isValidEmail := strings.Contains(email, "@")
-	isValidTickets := userTickets <= remainingTickets
-
-	return isValidName, isValidEmail, isValidTickets
-
-}
-
 func getUserInput() (string, string, string, uint) {
 	var firstName string
 	var lastName string
@@ -87,13 +77,4 @@ func getUserInput() (string, string, string, uint) {
 	fmt.Scan(&userTickets)
 
 	return firstName, lastName, email, userTickets
-}
-
-func bookTickets(remainingTickets uint, userTickets uint, bookings []string, firstName string, lastName string) {
-	remainingTickets = remainingTickets - userTickets
-	bookings = append(bookings, firstName+" "+lastName)
-
-	fmt.Println("Whole slice: ", bookings)
-	fmt.Println("1st element in slice: ", bookings[0])
-	fmt.Println("Size of the slice: ", len(bookings))
 }
