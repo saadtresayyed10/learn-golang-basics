@@ -15,22 +15,7 @@ func main() {
 	bookings := []string{}
 
 	for remainingTickets > 0 && len(bookings) <= 50 {
-		var firstName string
-		var lastName string
-		var email string
-		var userTickets uint
-
-		fmt.Println("Enter the first name: ")
-		fmt.Scan(&firstName)
-
-		fmt.Println("Enter the last name: ")
-		fmt.Scan(&lastName)
-
-		fmt.Println("Enter the email: ")
-		fmt.Scan(&email)
-
-		fmt.Println("Enter the no. of tickets to buy: ")
-		fmt.Scan(&userTickets)
+		firstName, lastName, email, userTickets := getUserInput()
 
 		isValidName, isValidEmail, isValidTickets := validateConditions(firstName, lastName, email, userTickets, remainingTickets)
 
@@ -84,4 +69,25 @@ func validateConditions(firstName string, lastName string, email string, userTic
 
 	return isValidName, isValidEmail, isValidTickets
 
+}
+
+func getUserInput() (string, string, string, uint) {
+	var firstName string
+	var lastName string
+	var email string
+	var userTickets uint
+
+	fmt.Println("Enter the first name: ")
+	fmt.Scan(&firstName)
+
+	fmt.Println("Enter the last name: ")
+	fmt.Scan(&lastName)
+
+	fmt.Println("Enter the email: ")
+	fmt.Scan(&email)
+
+	fmt.Println("Enter the no. of tickets to buy: ")
+	fmt.Scan(&userTickets)
+
+	return firstName, lastName, email, userTickets
 }
